@@ -1,80 +1,55 @@
+# Bingo da JAC
 
-# Bingo da JAC — guia passo a passo
+Aplicativo React para conduzir um bingo de perguntas e respostas. O operador clica uma vez no número sorteado para mostrar a pergunta; depois clica novamente no mesmo número para revelar a resposta. O histórico permite rever chamadas.
 
-Aplicativo React para projetar as chamadas de um bingo. O operador seleciona o número que saiu; o telão mostra o número e sua palavra, destaca o botão e registra a chamada no histórico.
+## Iniciar o projeto
 
-## Associação usada
-
-O programa segue a lista numerada fornecida. Isso resolve uma divergência do exemplo: na lista, **15 = Personagem** e **29 = Iluminação**. Portanto, a tela mostrará **15 — PERSONAGEM**. Os números 38, 39 e 41 a 45 continuam no painel, embora estejam sem bolinha física.
-
-## Etapa 1 — preparar o computador
-
-Instale Node.js (versão LTS) e um editor como Visual Studio Code. Depois, abra a pasta `bingo-jac` no VS Code e abra um terminal integrado.
-
-Confira a instalação:
-
-```bash
-node --version
-npm --version
-```
-
-## Etapa 2 — instalar e iniciar o projeto
-
-No terminal, dentro da pasta `bingo-jac`, execute:
+Instale Node.js 20.19+ ou 22.12+, abra esta pasta no Visual Studio Code e execute no terminal:
 
 ```bash
 npm install
 npm run dev
 ```
 
-Abra no navegador o endereço local mostrado pelo Vite. Para encerrar o servidor, volte ao terminal e pressione `Ctrl+C`.
+Abra o endereço local mostrado no terminal. Para encerrar, pressione `Ctrl+C` no terminal. `npm install` é necessário na primeira vez em cada computador.
 
-## Etapa 3 — entender os arquivos
+## Como jogar pelo painel
 
-- `index.html`: página que recebe o aplicativo.
-- `src/main.jsx`: ponto de entrada; cria o React e carrega o CSS.
-- `src/BingoApp.jsx`: associação número-palavra, estado do sorteio e componentes da tela.
-- `src/styles.css`: cores, tamanhos, organização e adaptação para telas menores.
-- `package.json`: dependências e comandos do projeto.
+1. A pessoa responsável confere o número sorteado e clica nele no painel.
+2. A pergunta aparece no telão com uma faixa de cor que indica a dificuldade.
+3. Depois que as pessoas procurarem a resposta nas cartelas, o operador clica novamente no mesmo número.
+4. A resposta aparece em destaque e o histórico registra se ela já foi revelada.
 
-## Etapa 4 — entender a associação
+Os números 38, 39 e 41 a 45 estão desativados porque as bolinhas correspondentes estão ausentes. O painel apresenta as 73 bolinhas disponíveis.
 
-Em `BingoApp.jsx`, `palavrasPorNumero` associa cada número à palavra. Exemplo:
+## Onde editar
+
+- `src/perguntas.js`: pergunta, resposta e dificuldade de cada número.
+- `src/BingoApp.jsx`: cliques, revelação de resposta, histórico e controles.
+- `src/styles.css`: modo claro, cores e adaptação para celular ou telão.
+- `src/main.jsx`: inicia o React e importa o estilo.
+
+Cada entrada de `perguntas.js` tem esta forma:
 
 ```js
-15: 'Personagem',
-29: 'Iluminação',
+1: {
+  question: 'Que arte permite que atores contem uma história ao vivo?',
+  answer: 'Teatro',
+  difficulty: 'facil',
+}
 ```
 
-O valor `null` identifica as bolinhas ausentes. Não apague esses números: eles ainda precisam aparecer no painel para que a associação continue cobrindo de 1 a 80.
+Use `facil`, `medio` ou `dificil`. Os níveis aparecem em amarelo, azul e vermelho, respectivamente. A lista organizada com as 73 definições está em `lista-perguntas.md`.
 
-## Etapa 5 — entender o clique e o histórico
-
-`useState([])` guarda os números já chamados. Quando alguém clica, `selecionarNumero` acrescenta o número à lista. Se ele já tiver sido chamado, a função ignora o clique repetido. A interface usa essa mesma lista para destacar os botões e mostrar as chamadas anteriores.
-
-Os controles “Desfazer última chamada” e “Reiniciar bingo” corrigem um clique acidental ou iniciam uma nova partida.
-
-## Etapa 6 — usar no evento
-
-Conecte o computador ao telão, abra o endereço local no navegador e clique em “Tela cheia”. Uma pessoa confere a bolinha e clica no mesmo número do painel. A chamada grande mostra número e palavra juntos; o histórico fica ao lado ou abaixo, conforme o tamanho da tela.
-
-## Etapa 7 — preparar para outro computador
-
-No computador que tem internet, dentro da pasta do projeto, execute:
+## Conferir e preparar a versão de produção
 
 ```bash
 npm run build
-```
-
-O resultado será criado em `dist/`. Para testar essa versão no próprio computador:
-
-```bash
 npm run preview
 ```
 
-Para usar em outro computador **sem instalar Node.js**, copie a pasta `dist` para um servidor estático local ou hospede-a em um serviço de páginas estáticas. Para abrir sem internet e sem servidor, a próxima etapa do projeto pode empacotar o app como programa instalável (por exemplo, com Electron ou Tauri). O modo atual já funciona em navegadores modernos; a fonte alternativa garante legibilidade se a fonte online não carregar.
+O primeiro comando verifica e compila o site para a pasta `dist`; o segundo abre uma prévia local dessa versão. Para abrir o site em outro computador, publique `dist` em uma hospedagem estática ou execute-o em um servidor local. O código do bingo não depende de conexão externa durante o jogo.
 
-## Observação sobre funcionamento offline
+## Cartelas
 
-As funções do bingo não precisam de internet depois que o app está servido localmente. O CSS tenta carregar fontes do Google Fonts; se a rede estiver indisponível, usa fontes instaladas no sistema. Se a exigência for abrir o app completamente offline com um clique, sem servidor, será necessário fazer a etapa de empacotamento para desktop.
-
+As respostas precisam coincidir com as palavras impressas nas cartelas. Esta atualização adotou o texto enviado nas novas definições. Em relação à lista antiga, confira especialmente: **18 Mecânica Industrial**, **24 Orientador Artístico-Pedagógico**, **26 JAC**, **34 Produção** e **64 Prêmio**. Atualize as cartelas para essas palavras ou ajuste as respostas em `src/perguntas.js` antes da impressão.

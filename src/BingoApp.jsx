@@ -1,110 +1,47 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
+import { numeros, numerosSemBolinha, perguntas } from './perguntas.js';
 
-// A lista numerada é a fonte oficial da associação número-palavra.
-// Os números sem bolinha física continuam aqui e podem ser selecionados.
-const palavrasPorNumero = {
-  1: 'Teatro',
-  2: 'Sociologia',
-  3: 'Arte',
-  4: 'Literatura',
-  5: 'Ciência',
-  6: 'Língua portuguesa',
-  7: 'Interdisciplinaridade',
-  8: 'Inglês',
-  9: 'Palco',
-  10: 'Educação física',
-  11: 'Cena',
-  12: 'Informática',
-  13: 'Roteiro',
-  14: 'Edificações',
-  15: 'Personagem',
-  16: 'Eletrotécnica',
-  17: 'Elenco',
-  18: 'Mecânica',
-  19: 'Diretor',
-  20: 'Química',
-  21: 'Ensaio',
-  22: 'Telecomunicações',
-  23: 'Figurino',
-  24: 'Orientador',
-  25: 'Cenário',
-  26: 'Tablado',
-  27: 'Maquiagem',
-  28: 'Cochia',
-  29: 'Iluminação',
-  30: 'Meio ambiente',
-  31: 'Sonoplastia',
-  32: 'Sustentabilidade',
-  33: 'Bastidores',
-  34: 'Sociedade',
-  35: 'Plateia',
-  36: 'Memória',
-  37: 'Espetáculo',
-  38: null,
-  39: null,
-  40: 'Cultura',
-  41: null,
-  42: null,
-  43: null,
-  44: null,
-  45: null,
-  46: 'Dança',
-  47: 'Dramaturgia',
-  48: 'Libras',
-  49: 'Atuação',
-  50: 'Criatividade',
-  51: 'Improvisação',
-  52: 'Imaginação',
-  53: 'Expressão corporal',
-  54: 'Pesquisa',
-  55: 'Voz',
-  56: 'IFCE',
-  57: 'Gesto',
-  58: 'Experimento',
-  59: 'Movimento',
-  60: 'Conhecimento',
-  61: 'Monólogo',
-  62: 'Aprendizagem',
-  63: 'Diálogo',
-  64: 'JAC',
-  65: 'Comédia',
-  66: 'Planejamento',
-  67: 'Tragédia',
-  68: 'Organização',
-  69: 'Narrativa',
-  70: 'Comunicação',
-  71: 'Matemática',
-  72: 'Autonomia',
-  73: 'Física',
-  74: 'Protagonismo',
-  75: 'Pensamento crítico',
-  76: 'Biologia',
-  77: 'Emoção',
-  78: 'História',
-  79: 'Transformação',
-  80: 'Geografia',
+const dificuldadeLabel = {
+  facil: 'Fácil',
+  medio: 'Médio',
+  dificil: 'Difícil',
 };
 
-const numeros = Array.from({ length: 80 }, (_, indice) => indice + 1);
-const numerosSemBolinha = new Set([38, 39, 41, 42, 43, 44, 45]);
-
 export default function BingoApp() {
-  const [sorteados, setSorteados] = useState([]);
-  const ultimoNumero = sorteados.at(-1) ?? null;
+  const [chamadas, setChamadas] = useState([]);
+  const [numeroAtual, setNumeroAtual] = useState(null);
+  const chamadaAtual = chamadas.find((chamada) => chamada.numero === numeroAtual);
+  const perguntaAtual = numeroAtual === null ? null : perguntas[numeroAtual];
 
-  const historicoRecente = useMemo(() => [...sorteados].reverse(), [sorteados]);
+  function clicarNumero(numero) {
+    const chamadaExistente = chamadas.find((chamada) => chamada.numero === numero);
 
-  function selecionarNumero(numero) {
-    if (sorteados.includes(numero)) return;
-    setSorteados((anteriores) => [...anteriores, numero]);
+    if (chamadaExistente) {
+      // Se a pergunta atual for clicada outra vez, revela a resposta.
+      if (numeroAtual === numero && !chamadaExistente.respostaVisivel) {
+        setChamadas((anteriores) => anteriores.map((chamada) => (
+          chamada.numero === numero ? { ...chamada, respostaVisivel: true } : chamada
+        )));
+      } else if (numeroAtual !== numero) {
+        // Permite voltar a uma chamada anterior pelo histórico do painel.
+        setNumeroAtual(numero);
+      }
+      return;
+    }
+
+    setChamadas((anteriores) => [...anteriores, { numero, respostaVisivel: false }]);
+    setNumeroAtual(numero);
   }
 
-  function desfazerUltimo() {
-    setSorteados((anteriores) => anteriores.slice(0, -1));
+  function desfazerUltimaChamada() {
+    const anteriores = chamadas.slice(0, -1);
+    setChamadas(anteriores);
+    setNumeroAtual(anteriores.at(-1)?.numero ?? null);
   }
 
-  function limparSorteio() {
-    setSorteados([]);
+  function reiniciarBingo() {
+    setChamadas([]);
+    setNumeroAtual(null);
   }
 
   async function alternarTelaCheia() {
@@ -121,30 +58,45 @@ export default function BingoApp() {
         <div className="brand">
           <span className="brand-mark" aria-hidden="true">J</span>
           <div>
-            <p className="eyebrow">Jornada de Arte e Cultura</p>
+            <p className="eyebrow">Mostra Interdisciplinar Juventude, Arte e Ciência</p>
             <h1>Bingo da JAC</h1>
           </div>
         </div>
         <div className="topbar-actions">
-          <span className="counter"><strong>{sorteados.length}</strong> de 80 chamadas</span>
-          <button className="button button-quiet" onClick={alternarTelaCheia}>
-            Tela cheia
-          </button>
+          <span className="counter"><strong>{chamadas.length}</strong> de {numeros.length} perguntas</span>
+          <button className="button button-secondary" onClick={alternarTelaCheia}>Tela cheia</button>
         </div>
       </header>
 
-      <section className="stage" aria-live="polite" aria-atomic="true">
-        <div className="stage-label">Número chamado</div>
-        {ultimoNumero === null ? (
-          <>
-            <div className="draw-word draw-placeholder">Pronto para começar?</div>
-            <p className="draw-hint">Clique no número que saiu no bingo.</p>
-          </>
+      <section className={`stage${perguntaAtual ? ` level-border-${perguntaAtual.difficulty}` : ''}`} aria-live="polite" aria-atomic="true">
+        {!perguntaAtual ? (
+          <div className="stage-empty">
+            <span className="stage-icon" aria-hidden="true">?</span>
+            <p className="stage-label">Pronto para começar?</p>
+            <h2>Selecione o número que saiu</h2>
+            <p className="draw-hint">A pergunta aparecerá aqui. Clique novamente no mesmo número para revelar a resposta.</p>
+          </div>
         ) : (
           <>
-            <div className="draw-number">{String(ultimoNumero).padStart(2, '0')}</div>
-            <div className="draw-word">{palavrasPorNumero[ultimoNumero]?.toLocaleUpperCase('pt-BR')}</div>
-            <p className="draw-hint">Número {ultimoNumero} • palavra da cartela</p>
+            <div className="stage-meta">
+              <span className="stage-label">Pergunta {String(numeroAtual).padStart(2, '0')}</span>
+              <span className={`difficulty-pill level-${perguntaAtual.difficulty}`}>
+                {dificuldadeLabel[perguntaAtual.difficulty]}
+              </span>
+            </div>
+            {chamadaAtual?.respostaVisivel ? (
+              <div className="answer-view">
+                <p className="answer-kicker">Resposta</p>
+                <h2 className="answer-word">{perguntaAtual.answer}</h2>
+                <p className="draw-hint">Procurem esta palavra na cartela.</p>
+              </div>
+            ) : (
+              <div className="question-view">
+                <p className="question-kicker">Leiam a definição</p>
+                <h2 className="question-text">{perguntaAtual.question}</h2>
+                <p className="draw-hint">Quando todos tiverem conferido a cartela, clique novamente no botão {numeroAtual}.</p>
+              </div>
+            )}
           </>
         )}
       </section>
@@ -156,36 +108,39 @@ export default function BingoApp() {
               <p className="eyebrow">Painel do operador</p>
               <h2 id="numbers-heading">Clique no número sorteado</h2>
             </div>
-            <div className="legend"><span className="legend-dot" /> já chamado</div>
+            <div className="legend" aria-label="Cores das dificuldades">
+              <span><i className="legend-dot level-facil" />Fácil</span>
+              <span><i className="legend-dot level-medio" />Médio</span>
+              <span><i className="legend-dot level-dificil" />Difícil</span>
+            </div>
           </div>
 
           <div className="number-grid">
-            {numeros.map((numero) => {
-              const foiSorteado = sorteados.includes(numero);
-              const semBolinha = numerosSemBolinha.has(numero);
+            {Array.from({ length: 80 }, (_, index) => index + 1).map((numero) => {
+              const pergunta = perguntas[numero];
+              const semBolinha = numerosSemBolinha.includes(numero);
+              const foiSorteado = chamadas.some((chamada) => chamada.numero === numero);
+              const estaAtual = numeroAtual === numero;
               return (
                 <button
                   key={numero}
-                  className={`number-button${foiSorteado ? ' is-drawn' : ''}${semBolinha ? ' has-no-ball' : ''}`}
-                  onClick={() => selecionarNumero(numero)}
-                  aria-pressed={foiSorteado}
-                  aria-label={`${numero}: ${palavrasPorNumero[numero] ?? 'sem bolinha física'}${foiSorteado ? ', já chamado' : ''}`}
-                  title={semBolinha ? `${numero} — sem bolinha física` : `${numero} — ${palavrasPorNumero[numero]}`}
+                  className={`number-button${pergunta ? ` level-${pergunta.difficulty}` : ''}${foiSorteado ? ' is-drawn' : ''}${estaAtual ? ' is-current' : ''}${semBolinha ? ' is-missing' : ''}`}
+                  onClick={() => clicarNumero(numero)}
+                  disabled={semBolinha}
+                  aria-pressed={estaAtual}
+                  aria-label={semBolinha ? `${numero}, bolinha ausente` : `${numero}, pergunta ${dificuldadeLabel[pergunta.difficulty]}${foiSorteado ? ', já sorteado' : ''}`}
+                  title={semBolinha ? `${numero} — bolinha ausente` : `${numero} — ${dificuldadeLabel[pergunta.difficulty]}${estaAtual && !chamadaAtual?.respostaVisivel ? ' — clique novamente para revelar a resposta' : ''}`}
                 >
                   {numero}
                 </button>
               );
             })}
           </div>
-          <p className="note">Os números 38, 39 e 41 a 45 estão sem bolinha física, mas continuam disponíveis no painel.</p>
+          <p className="note">As bolinhas 38, 39 e 41 a 45 estão ausentes e aparecem desativadas. O jogo tem {numeros.length} perguntas para as bolinhas disponíveis.</p>
 
           <div className="operator-actions">
-            <button className="button button-quiet" onClick={desfazerUltimo} disabled={sorteados.length === 0}>
-              Desfazer última chamada
-            </button>
-            <button className="button button-danger" onClick={limparSorteio} disabled={sorteados.length === 0}>
-              Reiniciar bingo
-            </button>
+            <button className="button button-secondary" onClick={desfazerUltimaChamada} disabled={chamadas.length === 0}>Desfazer última chamada</button>
+            <button className="button button-danger" onClick={reiniciarBingo} disabled={chamadas.length === 0}>Reiniciar bingo</button>
           </div>
         </section>
 
@@ -193,25 +148,30 @@ export default function BingoApp() {
           <div className="section-heading history-heading">
             <div>
               <p className="eyebrow">Para conferir</p>
-              <h2 id="history-heading">Chamadas anteriores</h2>
+              <h2 id="history-heading">Histórico</h2>
             </div>
-            <span className="history-count">{sorteados.length}</span>
+            <span className="history-count">{chamadas.length}</span>
           </div>
-          {historicoRecente.length === 0 ? (
-            <div className="empty-history">As palavras chamadas aparecerão aqui.</div>
+          {chamadas.length === 0 ? (
+            <div className="empty-history">As perguntas chamadas aparecerão aqui.</div>
           ) : (
             <ol className="history-list">
-              {historicoRecente.map((numero) => (
-                <li key={numero} className={numero === ultimoNumero ? 'history-item latest' : 'history-item'}>
-                  <span className="history-number">{String(numero).padStart(2, '0')}</span>
-                  <span className="history-word">{palavrasPorNumero[numero]?.toLocaleUpperCase('pt-BR')}</span>
+              {[...chamadas].reverse().map(({ numero, respostaVisivel }) => (
+                <li key={numero}>
+                  <button className={`history-item${numero === numeroAtual ? ' latest' : ''}`} onClick={() => setNumeroAtual(numero)}>
+                    <span className="history-number">{String(numero).padStart(2, '0')}</span>
+                    <span className="history-copy">
+                      <span className="history-word">{respostaVisivel ? perguntas[numero].answer : perguntas[numero].question}</span>
+                      <span className="history-status">{respostaVisivel ? 'Resposta revelada' : 'Pergunta • resposta pendente'}</span>
+                    </span>
+                  </button>
                 </li>
               ))}
             </ol>
           )}
         </aside>
       </div>
-      <footer>Uma chamada de cada vez. Divirtam-se! <span aria-hidden="true">✦</span></footer>
+      <footer><span className="footer-mark">JAC</span> Pergunta, procure a palavra e divirta-se!</footer>
     </main>
   );
 }
