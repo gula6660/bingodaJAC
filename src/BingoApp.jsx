@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { numeros, numerosSemBolinha, perguntas } from './perguntas.js';
+import { numeros, perguntas } from './perguntas.js';
 
 const dificuldadeLabel = {
   facil: 'Fácil',
@@ -56,7 +56,9 @@ export default function BingoApp() {
     <main className="app-shell">
       <header className="topbar">
         <div className="brand">
-          <span className="brand-mark" aria-hidden="true">J</span>
+          <span className="brand-mark" role="img" aria-label="JAC">
+            <span className="logo-j">J</span><span className="logo-a">A</span><span className="logo-c">C</span>
+          </span>
           <div>
             <p className="eyebrow">Mostra Interdisciplinar Juventude, Arte e Ciência</p>
             <h1>Bingo da JAC</h1>
@@ -116,27 +118,25 @@ export default function BingoApp() {
           </div>
 
           <div className="number-grid">
-            {Array.from({ length: 80 }, (_, index) => index + 1).map((numero) => {
+            {numeros.map((numero) => {
               const pergunta = perguntas[numero];
-              const semBolinha = numerosSemBolinha.includes(numero);
               const foiSorteado = chamadas.some((chamada) => chamada.numero === numero);
               const estaAtual = numeroAtual === numero;
               return (
                 <button
                   key={numero}
-                  className={`number-button${pergunta ? ` level-${pergunta.difficulty}` : ''}${foiSorteado ? ' is-drawn' : ''}${estaAtual ? ' is-current' : ''}${semBolinha ? ' is-missing' : ''}`}
+                  className={`number-button level-${pergunta.difficulty}${foiSorteado ? ' is-drawn' : ''}${estaAtual ? ' is-current' : ''}`}
                   onClick={() => clicarNumero(numero)}
-                  disabled={semBolinha}
                   aria-pressed={estaAtual}
-                  aria-label={semBolinha ? `${numero}, bolinha ausente` : `${numero}, pergunta ${dificuldadeLabel[pergunta.difficulty]}${foiSorteado ? ', já sorteado' : ''}`}
-                  title={semBolinha ? `${numero} — bolinha ausente` : `${numero} — ${dificuldadeLabel[pergunta.difficulty]}${estaAtual && !chamadaAtual?.respostaVisivel ? ' — clique novamente para revelar a resposta' : ''}`}
+                  aria-label={`${numero}, pergunta ${dificuldadeLabel[pergunta.difficulty]}${foiSorteado ? ', já sorteado' : ''}`}
+                  title={`${numero} — ${dificuldadeLabel[pergunta.difficulty]}${estaAtual && !chamadaAtual?.respostaVisivel ? ' — clique novamente para revelar a resposta' : ''}`}
                 >
                   {numero}
                 </button>
               );
             })}
           </div>
-          <p className="note">As bolinhas 38, 39 e 41 a 45 estão ausentes e aparecem desativadas. O jogo tem {numeros.length} perguntas para as bolinhas disponíveis.</p>
+          <p className="note">Amarelo: fácil · Azul: médio · Vermelho: difícil. Clique em uma chamada anterior no histórico para voltar a ela.</p>
 
           <div className="operator-actions">
             <button className="button button-secondary" onClick={desfazerUltimaChamada} disabled={chamadas.length === 0}>Desfazer última chamada</button>
@@ -171,7 +171,6 @@ export default function BingoApp() {
           )}
         </aside>
       </div>
-      <footer><span className="footer-mark">JAC</span> Pergunta, procure a palavra e divirta-se!</footer>
     </main>
   );
 }

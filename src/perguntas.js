@@ -1,5 +1,5 @@
 // As respostas são as palavras que devem aparecer nas cartelas.
-// A ordem cobre somente as 73 bolinhas que existem: 1–37, 40 e 46–80.
+// Uma pergunta para cada bolinha do bingo, numeradas de 1 a 90.
 export const perguntas = {
   1: { question: 'Que arte ou espaço permite que atores representem uma história ao vivo diante de um público?', answer: 'Teatro', difficulty: 'facil' },
   2: { question: 'Qual ciência humana estuda a sociedade e as relações entre as pessoas?', answer: 'Sociologia', difficulty: 'facil' },
@@ -38,7 +38,14 @@ export const perguntas = {
   35: { question: 'Como se chama o espaço do teatro onde ficam os espectadores?', answer: 'Plateia', difficulty: 'facil' },
   36: { question: 'Qual capacidade permite adquirir, guardar e recuperar informações e experiências ao longo do tempo?', answer: 'Memória', difficulty: 'medio' },
   37: { question: 'Como se chama uma apresentação pública criada para mostrar uma obra e entreter o público?', answer: 'Espetáculo', difficulty: 'facil' },
+  38: { question: 'Que área reúne pintura, desenho, escultura e outras formas de expressão visual?', answer: 'Artes visuais', difficulty: 'facil' },
+  39: { question: 'Como se chama a pessoa que educa e contribui para o processo de aprendizagem?', answer: 'Educador', difficulty: 'facil' },
   40: { question: 'Como se chama o conjunto de conhecimentos, crenças, valores, costumes, artes e práticas compartilhados por um grupo?', answer: 'Cultura', difficulty: 'medio' },
+  41: { question: 'Como se chama um sistema de sinais usado para expressar e comunicar ideias, como a fala, a escrita ou os gestos?', answer: 'Linguagem', difficulty: 'medio' },
+  42: { question: 'Qual área da ciência estuda as relações dos seres vivos entre si e com o ambiente?', answer: 'Ecologia', difficulty: 'medio' },
+  43: { question: 'Que arte combina imagens em sequência, som e movimento para contar histórias na tela?', answer: 'Cinema', difficulty: 'facil' },
+  44: { question: 'Como se chama o espaço que reúne livros para leitura, consulta e pesquisa?', answer: 'Biblioteca', difficulty: 'facil' },
+  45: { question: 'Como se chama uma apresentação artística ao vivo que pode combinar teatro, dança, música e artes visuais?', answer: 'Performance', difficulty: 'medio' },
   46: { question: 'Qual arte expressa sentimentos, ideias e histórias por meio de movimentos corporais ritmados?', answer: 'Dança', difficulty: 'facil' },
   47: { question: 'Qual arte e técnica organiza textos escritos para serem representados no palco?', answer: 'Dramaturgia', difficulty: 'medio' },
   48: { question: 'Qual língua brasileira de modalidade visual-espacial é usada pela comunidade surda no Brasil?', answer: 'Libras', difficulty: 'facil' },
@@ -74,7 +81,16 @@ export const perguntas = {
   78: { question: 'Qual área estuda as sociedades humanas ao longo do tempo com base em acontecimentos e fontes?', answer: 'História', difficulty: 'medio' },
   79: { question: 'Como se chama o processo pelo qual algo ou alguém se modifica?', answer: 'Transformação', difficulty: 'medio' },
   80: { question: 'Qual ciência estuda os lugares e as relações entre a sociedade e o espaço?', answer: 'Geografia', difficulty: 'medio' },
+  81: { question: 'Qual arte organiza sons, ritmos e melodias para criar composições?', answer: 'Música', difficulty: 'facil' },
+  82: { question: 'Como se chama uma das partes principais em que uma peça teatral pode ser dividida?', answer: 'Ato', difficulty: 'medio' },
+  83: { question: 'Como se chama um objeto usado por atores em cena para compor uma ação ou caracterizar uma personagem?', answer: 'Adereço', difficulty: 'medio' },
+  84: { question: 'Que forma de expressão visual pode representar pessoas, lugares e ideias com pigmentos sobre uma superfície?', answer: 'Pintura', difficulty: 'facil' },
+  85: { question: 'Como se chama a sequência planejada de movimentos que organiza uma dança?', answer: 'Coreografia', difficulty: 'medio' },
+  86: { question: 'Como se chama o ator que participa de uma cena ou multidão sem ter papel de destaque?', answer: 'Figurante', difficulty: 'medio' },
+  87: { question: 'Que modelo em escala representa uma construção ou espaço antes de ser feito?', answer: 'Maquete', difficulty: 'medio' },
+  88: { question: 'Que área combina conhecimentos de mecânica, eletrônica e programação para criar máquinas automatizadas?', answer: 'Robótica', difficulty: 'medio' },
+  89: { question: 'Como se chama a criação ou aplicação de uma ideia nova para melhorar algo ou resolver um problema?', answer: 'Inovação', difficulty: 'medio' },
+  90: { question: 'Que grandeza física está presente em fenômenos como luz, calor, eletricidade e movimento?', answer: 'Energia', difficulty: 'medio' },
 };
 
-export const numerosSemBolinha = [38, 39, 41, 42, 43, 44, 45];
 export const numeros = Object.keys(perguntas).map(Number).sort((a, b) => a - b);

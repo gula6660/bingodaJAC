@@ -1,10 +1,12 @@
-# Lista completa de perguntas do Bingo da JAC
+# Perguntas e respostas do Bingo da JAC
 
-São 73 perguntas, uma para cada bolinha disponível. As bolinhas ausentes (38, 39, 41, 42, 43, 44, 45) não têm pergunta.
+Lista completa: 90 perguntas, organizadas pelo número da bolinha.
 
-**Dificuldades:** Fácil: 34 · Médio: 34 · Difícil: 5.
+**Níveis:** Fácil: 40 · Médio: 45 · Difícil: 5.
 
-| Nº | Nível | Pergunta | Resposta da cartela |
+## Perguntas
+
+| Nº | Dificuldade | Pergunta | Resposta para a cartela |
 |---:|---|---|---|
 | 1 | Fácil | Que arte ou espaço permite que atores representem uma história ao vivo diante de um público? | **Teatro** |
 | 2 | Fácil | Qual ciência humana estuda a sociedade e as relações entre as pessoas? | **Sociologia** |
@@ -43,7 +45,14 @@ São 73 perguntas, uma para cada bolinha disponível. As bolinhas ausentes (38, 
 | 35 | Fácil | Como se chama o espaço do teatro onde ficam os espectadores? | **Plateia** |
 | 36 | Médio | Qual capacidade permite adquirir, guardar e recuperar informações e experiências ao longo do tempo? | **Memória** |
 | 37 | Fácil | Como se chama uma apresentação pública criada para mostrar uma obra e entreter o público? | **Espetáculo** |
+| 38 | Fácil | Que área reúne pintura, desenho, escultura e outras formas de expressão visual? | **Artes visuais** |
+| 39 | Fácil | Como se chama a pessoa que educa e contribui para o processo de aprendizagem? | **Educador** |
 | 40 | Médio | Como se chama o conjunto de conhecimentos, crenças, valores, costumes, artes e práticas compartilhados por um grupo? | **Cultura** |
+| 41 | Médio | Como se chama um sistema de sinais usado para expressar e comunicar ideias, como a fala, a escrita ou os gestos? | **Linguagem** |
+| 42 | Médio | Qual área da ciência estuda as relações dos seres vivos entre si e com o ambiente? | **Ecologia** |
+| 43 | Fácil | Que arte combina imagens em sequência, som e movimento para contar histórias na tela? | **Cinema** |
+| 44 | Fácil | Como se chama o espaço que reúne livros para leitura, consulta e pesquisa? | **Biblioteca** |
+| 45 | Médio | Como se chama uma apresentação artística ao vivo que pode combinar teatro, dança, música e artes visuais? | **Performance** |
 | 46 | Fácil | Qual arte expressa sentimentos, ideias e histórias por meio de movimentos corporais ritmados? | **Dança** |
 | 47 | Médio | Qual arte e técnica organiza textos escritos para serem representados no palco? | **Dramaturgia** |
 | 48 | Fácil | Qual língua brasileira de modalidade visual-espacial é usada pela comunidade surda no Brasil? | **Libras** |
@@ -79,7 +88,37 @@ São 73 perguntas, uma para cada bolinha disponível. As bolinhas ausentes (38, 
 | 78 | Médio | Qual área estuda as sociedades humanas ao longo do tempo com base em acontecimentos e fontes? | **História** |
 | 79 | Médio | Como se chama o processo pelo qual algo ou alguém se modifica? | **Transformação** |
 | 80 | Médio | Qual ciência estuda os lugares e as relações entre a sociedade e o espaço? | **Geografia** |
+| 81 | Fácil | Qual arte organiza sons, ritmos e melodias para criar composições? | **Música** |
+| 82 | Médio | Como se chama uma das partes principais em que uma peça teatral pode ser dividida? | **Ato** |
+| 83 | Médio | Como se chama um objeto usado por atores em cena para compor uma ação ou caracterizar uma personagem? | **Adereço** |
+| 84 | Fácil | Que forma de expressão visual pode representar pessoas, lugares e ideias com pigmentos sobre uma superfície? | **Pintura** |
+| 85 | Médio | Como se chama a sequência planejada de movimentos que organiza uma dança? | **Coreografia** |
+| 86 | Médio | Como se chama o ator que participa de uma cena ou multidão sem ter papel de destaque? | **Figurante** |
+| 87 | Médio | Que modelo em escala representa uma construção ou espaço antes de ser feito? | **Maquete** |
+| 88 | Médio | Que área combina conhecimentos de mecânica, eletrônica e programação para criar máquinas automatizadas? | **Robótica** |
+| 89 | Médio | Como se chama a criação ou aplicação de uma ideia nova para melhorar algo ou resolver um problema? | **Inovação** |
+| 90 | Médio | Que grandeza física está presente em fenômenos como luz, calor, eletricidade e movimento? | **Energia** |
 
-## Conferência das cartelas
+## Respostas novas para acrescentar às cartelas
 
-As respostas devem estar escritas exatamente como serão procuradas nas cartelas. Esta versão usa as novas palavras **Mecânica Industrial** (18), **Orientador Artístico-Pedagógico** (24), **JAC** (26), **Produção** (34) e **Prêmio** (64). Atualize as cartelas para corresponder a elas.
+- **38 — Artes visuais**
+- **39 — Educador**
+- **41 — Linguagem**
+- **42 — Ecologia**
+- **43 — Cinema**
+- **44 — Biblioteca**
+- **45 — Performance**
+- **81 — Música**
+- **82 — Ato**
+- **83 — Adereço**
+- **84 — Pintura**
+- **85 — Coreografia**
+- **86 — Figurante**
+- **87 — Maquete**
+- **88 — Robótica**
+- **89 — Inovação**
+- **90 — Energia**
+
+## Atualizações em palavras já usadas
+
+Em relação à lista anterior das cartelas, confira as novas respostas: **18 Mecânica Industrial**, **24 Orientador Artístico-Pedagógico**, **26 JAC**, **34 Produção** e **64 Prêmio**. Ajuste as cartelas para que as palavras chamadas apareçam nelas exatamente como estão escritas aqui.

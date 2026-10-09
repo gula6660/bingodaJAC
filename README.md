@@ -1,6 +1,6 @@
 # Bingo da JAC
 
-Aplicativo React para conduzir um bingo de perguntas e respostas. O operador clica uma vez no número sorteado para mostrar a pergunta; depois clica novamente no mesmo número para revelar a resposta. O histórico permite rever chamadas.
+Aplicativo React para conduzir um bingo de 90 perguntas e respostas. O operador clica uma vez no número sorteado para mostrar a pergunta; depois clica novamente no mesmo número para revelar a resposta. O histórico permite rever chamadas.
 
 ## Iniciar o projeto
 
@@ -20,7 +20,7 @@ Abra o endereço local mostrado no terminal. Para encerrar, pressione `Ctrl+C` n
 3. Depois que as pessoas procurarem a resposta nas cartelas, o operador clica novamente no mesmo número.
 4. A resposta aparece em destaque e o histórico registra se ela já foi revelada.
 
-Os números 38, 39 e 41 a 45 estão desativados porque as bolinhas correspondentes estão ausentes. O painel apresenta as 73 bolinhas disponíveis.
+O painel apresenta as 90 bolinhas. As perguntas dos números 38, 39, 41–45 e 81–90 foram acrescentadas nesta atualização; inclua essas respostas nas cartelas.
 
 ## Onde editar
 
@@ -39,7 +39,7 @@ Cada entrada de `perguntas.js` tem esta forma:
 }
 ```
 
-Use `facil`, `medio` ou `dificil`. Os níveis aparecem em amarelo, azul e vermelho, respectivamente. A lista organizada com as 73 definições está em `lista-perguntas.md`.
+Use `facil`, `medio` ou `dificil`. Os níveis aparecem em amarelo, azul e vermelho, respectivamente. A lista organizada com as 90 definições está em `lista-perguntas.md`.
 
 ## Conferir e preparar a versão de produção
 
@@ -52,4 +52,4 @@ O primeiro comando verifica e compila o site para a pasta `dist`; o segundo abre
 
 ## Cartelas
 
-As respostas precisam coincidir com as palavras impressas nas cartelas. Esta atualização adotou o texto enviado nas novas definições. Em relação à lista antiga, confira especialmente: **18 Mecânica Industrial**, **24 Orientador Artístico-Pedagógico**, **26 JAC**, **34 Produção** e **64 Prêmio**. Atualize as cartelas para essas palavras ou ajuste as respostas em `src/perguntas.js` antes da impressão.
+As respostas precisam coincidir com as palavras impressas nas cartelas. Confira especialmente estas cinco mudanças: **18 Mecânica Industrial**, **24 Orientador Artístico-Pedagógico**, **26 JAC**, **34 Produção** e **64 Prêmio**. Acrescente também as novas respostas dos números 38, 39, 41–45 e 81–90 antes de jogar ou imprimir cartelas.
